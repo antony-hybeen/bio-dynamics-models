@@ -1,4 +1,4 @@
-relapse mode
+#relapse mode
 A non linear systems simulations based on the relation between
 ::dopamine
 ::stress
