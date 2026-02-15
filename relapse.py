@@ -26,7 +26,7 @@ cont[0]=1.0
 stress[0]=0.01
 cue[0]=0.01
 relapse_count = 0
-in_relapse = False
+relapsed = False
 r_max = 0.7
 r_low = 0.4
 
@@ -79,27 +79,27 @@ for i in range(len(time)-1):#stress level variation wrt hour of the day.
     R=stress[i+1]-cont[i+1]-dop[i+1]
     R = stress[i+1] - cont[i+1] - dop[i+1]
     #Relapse time and count
-    if not in_relapse and R > r_max:
+    if not relapsed and R > r_max:
      relapse_count += 1
-     in_relapse = True
+     relapsed = True
      print("relapse at time:",time[i])
      print("relapse count",relapse_count)
      dop[i+1] -= 0.6
      cont[i+1] -= 0.4
      stress[i+1] += 0.4
 
-    elif in_relapse and R < r_low:
-     in_relapse = False
+    elif relapsed and R < r_low:
+     relapsed = False
 
 
 #graph
 plot.figure(figsize=(10,6))
 plot.title("hypothetical graph plotting of relapse mech and effects of stress dopamine etc on each other") 
-plot.xlabel("Time (hours)") 
+plot.xlabel("Time(hours)") 
 plot.ylabel("State Value") 
-plot.plot(time,dop,label="Dopamine") 
-plot.plot(time,stress,label="Stress") 
-plot.plot(time,cont,label="Control") 
+plot.plot(time,dop,label="dopamine") 
+plot.plot(time,stress,label="stress") 
+plot.plot(time,cont,label="control") 
 plot.plot(time,cue,label="cue") 
 plot.legend() 
 plot.show()
